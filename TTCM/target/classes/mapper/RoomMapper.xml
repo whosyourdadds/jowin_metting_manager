@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.jowin.dao.RoomDao">
+	<insert id="saveRoom" 
+	parameterType="cn.jowin.entity.Room">
+		insert into room
+		( room_Id, 
+		  meeting_Id,
+		  company_Id,
+		  user_Id,
+		  device_Id,
+		  room_Name, 
+		  room_Phone,
+		  video,
+		  room_Status,
+		  cisco_Ip,
+		  room_Password,
+		  room_Address,
+		  domain,
+		  update_Time,
+		  temperature,
+		  has_Body,
+		  longitude_and_latitude,
+		  angency,
+		  account,
+		  max_user) 
+		 values 
+			 (#{roomId}, #{meetingId}, #{companyId},
+			 #{userId}, #{deviceId}, #{roomName},#{roomPhone},
+			 #{video},#{roomStatus},#{ciscoIp},#{roomPassword},#{roomAddress},
+			 #{domain},#{updateTime},#{temperature},#{hasBody},
+			 #{longitude_and_latitude},#{angency},#{account},#{maxUser})
+	</insert>
+	
+	<select id="findRoomById"
+		parameterType="string"
+		resultType="cn.jowin.entity.Room">
+		select 
+		  room_Id AS roomId, 
+		  meeting_Id AS meetingId,
+		  company_Id AS companyId,
+		  user_Id AS userId,
+		  device_Id AS deviceId,
+		  room_Name AS roomName, 
+		  room_Phone AS roomPhone,
+		  video AS video,
+		  room_Status AS roomStatus,
+		  cisco_Ip AS ciscoIp,
+		  room_Password AS roomPassword,
+		  room_Address AS roomAddress,
+		  domain AS domain,
+		  update_Time AS updateTime,
+		  temperature AS temperature,
+		  has_Body AS hasBody,
+		  longitude_and_latitude,
+		  angency,
+		  account,
+		  max_user AS maxUser
+		from
+			room
+		where	
+			room_Id=#{roomId}
+	</select>
+	
+	<select id="findRoomByCompanyId"
+		parameterType="string"
+		resultType="cn.jowin.entity.Room">
+		select 
+		  room_Id AS roomId, 
+		  meeting_Id AS meetingId,
+		  company_Id AS companyId,
+		  user_Id AS userId,
+		  device_Id AS deviceId,
+		  room_Name AS roomName, 
+		  room_Phone AS roomPhone,
+		  video AS video,
+		  room_Status AS roomStatus,
+		  cisco_Ip AS ciscoIp,
+		  room_Password AS roomPassword,
+		  room_Address AS roomAddress,
+		  domain AS domain,
+		  update_Time AS updateTime,
+		  temperature AS temperature,
+		  has_Body AS hasBody,
+		  longitude_and_latitude,
+		  angency,
+		  account,
+		  max_user AS maxUser
+		from
+			room
+		where	
+			company_Id=#{companyId}
+	</select>
+	
+	<select id="findRoomByName"
+		parameterType="string"
+		resultType="cn.jowin.entity.Room">
+		select 
+		  room_Id AS roomId, 
+		  meeting_Id AS meetingId,
+		  company_Id AS companyId,
+		  user_Id AS userId,
+		  device_Id AS deviceId,
+		  room_Name AS roomName, 
+		  room_Phone AS roomPhone,
+		  video AS video,
+		  room_Status AS roomStatus,
+		  cisco_Ip AS ciscoIp,
+		  room_Password AS roomPassword,
+		  room_Address AS roomAddress,
+		  domain AS domain,
+		  update_Time AS updateTime,
+		  temperature AS temperature,
+		  has_Body AS hasBody,
+		  longitude_and_latitude,
+		  angency,
+		  account,
+		  max_user AS maxUser
+		from
+			room
+		where  room_Name=#{roomName}
+	</select>	
+	
+	<delete id="deleteRoomById"  parameterType="string" >
+		delete FROM room 
+		WHERE room_id = #{roomId}
+	
+	</delete>	
+	
+	<update id="updateRoomById" parameterType="cn.jowin.entity.Room">
+		UPDATE  room 
+		SET 
+		  meeting_Id = #{meetingId} ,
+		  user_Id = #{userId} ,
+		  device_Id = #{deviceId} ,
+		  room_Name = #{roomName} , 
+		  room_Phone = #{roomPhone} ,
+		  video = #{video} ,
+		  room_Status = #{roomStatus} ,
+		  cisco_Ip = #{ciscoIp} ,
+		  room_Password = #{roomPassword} ,
+		  room_Address = #{roomAddress} ,
+		  domain = #{domain} ,
+		  update_Time = #{updateTime} ,
+		  temperature = #{temperature} ,
+		  has_Body = #{hasBody} ,
+		  longitude_and_latitude = #{longitude_and_latitude},
+		  angency = #{angency},
+		  account = #{account},
+		  max_user = #{maxUser}
+		  
+		WHERE room_id=#{roomId}
+	</update>
+	
+	
+</mapper>
+
+
+
+
+
+
+

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.jowin.dao.RoomRelationDao">
+	<insert id="saveRoomRelation" 
+	parameterType="cn.jowin.entity.RoomRelation">
+		insert into room_relation
+		( meeting_Id, room_id,update_time,isDelete) 
+		values 
+			 (#{meetingId}, #{roomId},#{updateTime},#{isDelete})
+	</insert>
+
+	<select id="findRoomRelationByMeetingId"
+		parameterType="string"
+		resultType="cn.jowin.entity.RoomRelation">
+		select 
+			meeting_Id AS meetingId,
+			room_Id AS roomId,
+			update_Time AS updateTime,
+			isDelete
+		from
+			room_relation
+		where	
+			meeting_Id=#{meetingId}
+	</select>
+
+
+	<select id="findRoomByMeetingId"
+		parameterType="string"
+		resultType="string">
+		select 
+			room_id AS roomId
+		from
+			room_relation
+		where	
+			meeting_Id=#{meetingId}
+		and 
+			(isDelete!=3 OR isDelete is null)
+	</select>
+	
+	<select id="findRoomByRoomId"
+		parameterType="string"
+		resultType="string">
+		select 
+			meeting_Id AS meetingId
+		from
+			room_relation
+		where	
+			room_id=#{roomId}
+		and
+			(isDelete!=3 OR isDelete is null)
+	</select>	
+	
+	<select id="findRoomByRoomRelation"
+		parameterType="cn.jowin.entity.RoomRelation"
+		resultType="cn.jowin.entity.RoomRelation">
+		select 
+			meeting_Id AS meetingId,
+			room_Id AS roomId,
+			update_Time AS updateTime,
+			isDelete 
+		from
+			room_relation
+		where	room_id=#{roomId} 
+		and		meeting_id=#{meetingId}
+	</select>
+	
+	<delete id="deleteRoomRelation" parameterType="java.util.Map">
+		delete FROM room_relation
+		where	room_id=#{roomId} 
+		and meeting_id=#{meetingId}
+	</delete>
+	
+	<delete id="deleteRoomRelationByRoomId" parameterType="string">
+		delete FROM room_relation
+		where	room_id=#{roomId} 
+	</delete>
+	
+	<update id="updateRoomRelationByMeetingId" parameterType="cn.jowin.entity.RoomRelation">
+		update room_relation
+		set room_id=#{roomId} ,
+			update_Time = #{updateTime}
+		where meeting_id=#{meetingId}
+	</update>
+	
+	<update id="updateIsDelete" parameterType="java.util.Map">
+		update room_relation
+		set 
+			isDelete = #{isDelete}
+		where 
+			meeting_id=#{meetingId}
+	</update>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+

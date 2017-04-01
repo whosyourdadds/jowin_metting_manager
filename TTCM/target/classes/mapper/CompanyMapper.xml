@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.jowin.dao.CompanyDao">
+	<insert id="saveCompany" 
+	parameterType="cn.jowin.entity.Company">
+		insert into company 
+		( company_id,room_id,user_id,company_Name,company_Address, 
+			company_Phone,company_Fax,company_Email,company_Website,update_Time,
+			logo,activate,subdomain) 
+		values 
+			 (#{companyId}, #{roomId}, #{userId},
+			 #{companyName}, #{companyAddress}, #{companyPhone},#{companyFax},
+			 #{companyEmail},#{companyWebsite},#{updateTime}, 
+			 #{logo}, #{activate}, 
+			 #{subdomain} )
+	</insert>
+	
+	<select id="findCompanyById" 
+		parameterType="string" 
+		resultType="cn.jowin.entity.Company">
+		select 
+			company_id AS companyId,
+			room_id AS roomId,
+			user_id AS userId,
+			company_Name AS companyName,
+			company_Address AS companyAddress, 
+			company_Phone AS companyPhone,
+			company_Fax AS companyFax,
+			company_Email AS companyEmail,
+			company_Website AS companyWebsite,
+			update_Time AS updateTime,
+			logo AS logo,
+			activate AS activate,
+			Subdomain AS subdomain
+		from 
+			company 
+		where	
+			company_id=#{companyId}
+	</select>
+	
+	<select id="findCompanyByName" 
+		parameterType="string" 
+		resultType="cn.jowin.entity.Company">
+		select 
+			company_id AS companyId,
+			room_id AS roomId,
+			user_id AS userId,
+			company_Name AS companyName,
+			company_Address AS companyAddress, 
+			company_Phone AS companyPhone,
+			company_Fax AS companyFax,
+			company_Email AS companyEmail,
+			company_Website AS companyWebsite,
+			update_Time AS updateTime,
+			logo, 
+			activate, 
+			subdomain 
+		from 
+			company 
+		where  
+			company_Name=#{companyName}
+	</select>	
+	
+	<delete id="deleteCompanyRegistById" parameterType="string">
+		DELETE 	
+		FROM company	
+		WHERE company_id = #{companyId}
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+
+

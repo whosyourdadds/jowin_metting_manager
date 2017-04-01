@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/supersized.css">
+        <link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/popup.css">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+		<style type="text/css">
+			.span{
+				 font-size: 10px;
+			}
+			.mistake{
+				color: red;
+			}
+			.blue{
+				background-color: #0033FF;
+				border-color: #6699FF;
+			}
+			.optional{
+				margin-left: 27.140px;
+			}
+		</style>
+    </head>
+
+    <body>
+
+        <div class="page-container">
+           
+            <form action="" method="post" id="loginForm" onsubmit="return login()">
+            	<div id="login">
+	                <input type="text" name="username" id="username" class="username" placeholder="手 机 号Modile">
+	                <input type="password" name="password" id="password" class="password" placeholder="密 码Password">
+	                <!--<input type="password" name="password" class="password" placeholder="Password"> -->
+	                <button type="submit">登 陆</button>
+					<button id="companyRegist" type="button" class="blue">公司注册</button>
+					<button id="userRegist" type="button" class="blue">个人注册</button>
+					<!-- <input type="time"/> -->
+	                <div class="error"><span>+</span></div>
+                </div>
+                <div id="regist">
+                	<div id="company" hidden="hidden">
+                		
+	               		 	<input type="text" id="cName" placeholder="公司名称CompanyName"><br>
+							<input type="text" id="cAddress" placeholder="公司地址CompanyAddress"><br>
+							<input type="text" id="cPhone" placeholder="公司电话CompanyPhone 格式:xxx-12345678"><br>
+							<input type="text" id="cEmail" placeholder="公司邮箱CompanyEmail"><br>
+							<input type="text" id="cFax" placeholder="公司传真CompanyFax 格式:xxx-12345678"><br>
+							<input class="optional" type="text" id="cWeb" placeholder="公司网站CompanyWeb"><span class="span">选填</span> <br>
+							<p class="span mistake" id="chint"></p>
+	                		<button id="cSave" class="blue" type="button">下 一 步</button>
+	                		<button id="cback" type="button">取 消</button> 
+	                		<div class="error1"><span>+</span></div>
+                	</div>
+                	<div id="admin" hidden="hidden">
+                	
+                		<input type="text" id="adminName" placeholder="管理员姓名adminName"><br>
+						<input type="password" id="adminPassword" placeholder="密码格式:长度6-16，字母开头，允许 _ ."><br>
+						<input type="text" id="adminEmail" placeholder="邮箱Email"><br>
+						<input type="text" id="adminModile" placeholder="手机Modile"><br>
+						<input type="text" id="adminPhone" class="optional" placeholder="电话Phone 格式:xxx-12345678"><span class="span">选填</span><br>
+						<input class="optional" type="text" id="aJob" placeholder="职位Job"><span class="span">选填</span><br>
+						<p class="span mistake" id="ahint"></p>
+						<button type="button" class="blue" id="adminRegist">注 册</button>
+						<!-- 这里有个bug：必须连贯的创建公司，中途断了，就没有管理员了，
+						如果用户在这里按取消，我们就删除公司的信息 -->
+						<button type="button" id="adminCancel">取 消</button>
+						<div class="error2"><span>+</span></div>
+                	</div>
+                	<div id="room" hidden="hidden">
+                		<input type="text" id="roomName" placeholder="房间名称roomName"><br>
+						<input type="text" id="roomPhone" placeholder="房间电话roomPhone"><br>
+						<input type="number" id="ciscoIP" placeholder="房间人数上限"><br>
+						<input type="password" id="roomPassword" placeholder="房间密码格式:长度3-10，不允许有特殊字符"><br>
+						<input type="text" id="roomAddress" placeholder="房间地址roomAddress"><br>
+						<p class="span mistake" id="rhint"></p>
+						<button type="button" class="blue" id="roomFound">创 建</button>
+						<button type="button" id="roomCancel">取 消</button>
+						<div class="error3"><span>+</span></div>
+                	</div>
+                	<div id="user" hidden="hidden">
+               			<input type="text" id="uCompanyName" placeholder="公司名称CompanyName"><br>
+						<input type="text" id="uName" placeholder="姓名Name"><br>
+						<input type="password" id="uPassword" placeholder="密码Password"><br>
+						<input type="text" id="uEmail" placeholder="邮箱Email"><br>
+						<input type="text" id="uModile" placeholder="手机Modile"><br>
+						<input class="optional" type="text" id="uPhone" placeholder="电话Phone"><span class="span">选填</span><br>
+						<input class="optional" type="text" id="uJob" placeholder="职位Job"><span class="span">选填</span><br>
+						<p class="span mistake" id="uhint"></p>
+						<button type="button" class="blue" id="applyFor">申请</button>
+						<button type="button" id="cancel">取消</button>
+						<div class="error4"><span>+</span></div>
+                	</div>
+                	
+                </div>
+                
+            </form>
+            <div class="connect">
+					<p>注意：请尽量使用谷歌浏览器，切勿使用IE浏览器。</p>
+					<!--<p>
+						<a class="facebook" href=""></a>
+						<a class="twitter" href=""></a>
+					</p>-->
+				</div>
+        </div>
+        
+
+        <!-- Javascript assets/js/jquery-1.8.2.min.js-->
+        
+        
+        <script src="scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="scripts/cookie_util.js"></script>
+		<script type="text/javascript" src="scripts/aaa/popup.js"></script>
+        
+        <script src="assets/js/supersized.3.2.7.min.js"></script>
+        <script src="assets/js/supersized-init.js"></script>
+        <script src="assets/js/scripts.js"></script>
+		<script type="text/javascript" src="scripts/aaa/regist.js"></script>
+		<script type="text/javascript" src="scripts/const.js"></script>
+		
+		
+    </body>
+
+</html>
+

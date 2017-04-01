@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>会议管理系统</title>
+		<link rel="stylesheet" href="../css/bootstrap.css">
+<style type="text/css">
+	.table th, .table td { 
+		text-align: center; 
+		height:38px;
+	}
+	body input,textarea,select{
+		border: 1px solid #E3E3E3; 
+		border-radius: 5px;
+		padding: 5px 11px;
+	}
+	select{
+		margin-left: 15px;
+	}
+	option{
+		padding: 5px 11px;
+	}	
+	.row{
+		margin-bottom: 24px;
+	}
+	/*.radius{
+		border: 1px solid #E3E3E3; 
+		border-radius: 5px;
+		padding: 5px 11px;
+	}*/
+</style>
+	</head>
+	<body style="padding-top: 91px;">
+		
+		<!-- 导航条 -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<img src="../img/jowin.png" class="navbar-brand" />
+			</div>
+			<ul class="nav navbar-nav">
+				<li ><a href="order/order.html">会议</a></li>
+				<li><a href="roomManage.html">房间</a></li>
+				<li class="active">  
+		            <a href="#">管理   </a>  
+		            <!--<ul class="dropdown-menu" >  
+			            <li class="active"><a href="userApplication.html">用户申请</a></li>  
+			            <li class="divider"></li>
+			            <li><a href="admin.html">管理员</a></li>  
+			            <li><a href="power.html">授权</a></li> 
+		            </ul>  -->
+	            </li>  
+				<li><a href="message.html">个人信息</a></li>
+			</ul>
+		</nav><!-- 导航条 -->
+		
+		<!--左导航-->
+		<div class="col-md-2" >
+			<ul id="navbar" class="nav nav-pills nav-stacked" style="border: 1px solid #E3E3E3; border-radius: 7px;">
+				<li class="active"><a href="#" id="">用户申请</a></li>
+				<li><a href="#" id="">管理员</a></li>
+				<li><a href="#" id="">授权</a></li>
+			</ul>
+		</div><!--左导航-->
+		
+		
+		<div class="col-md-10 " id="content" style="border: 1px solid #E3E3E3; border-radius: 7px;">
+			
+			<!--用户申请-->
+			<div id="userApplication">
+				<table class="table table-striped room" id="sq">
+					<tr class="title">
+						<th align="center" valign="middle">姓&nbsp;名</th>
+						<th align="center" valign="middle">手&nbsp;机</th>
+						<th align="center" valign="middle">操&nbsp;作</th>
+					</tr>
+					<tr>
+						<td>预约</td>
+						<td>123456789-021</td>
+						<td>
+							<input class="btn btn-primary" type="button"  value="同意">
+							<input class="btn btn-primary" type="button"  value="拒绝">
+						</td>
+					</tr>
+					<tr>
+						<td>九闻通信</td>
+						<td>123456789-021</td>
+						<td>
+							<input class="btn btn-primary" type="button"  value="同意">
+							<input class="btn btn-primary" type="button"  value="拒绝">
+						</td>
+					</tr>
+				</table>
+			</div>		
+			
+			
+			
+			
+			
+		</div>
+<script type="text/javascript" src="../scripts/jquery.min.js"></script>
+<script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/cookie_util.js"></script>
+<script type="text/javascript" src="../scripts/const.js"></script>	
+<script type="text/javascript" src="../scripts/aaa/popup.js"></script><!-- 弹出层 -->	
+<script type="text/javascript" src="../scripts/aaa/userApp.js"></script>
+
+<script>
+	
+	$(document).ready(function(){
+		if($(window).width()<768){
+//			console.log(1)
+			$("body").css("padding-top",($("nav")[0].clientHeight+1)+"px");
+		}
+	if(window.localStorage){
+	}else{
+		alert('您的浏览器不支持这项服务，请更换！');
+	}
+	//active选中问题
+	$('#navbar.nav > li').click(function (e) {
+		e.preventDefault();
+		$('#navbar.nav > li').removeClass('active');
+		$(this).addClass('active');
+	});
+	
+});
+</script>
+	</body>
+</html>

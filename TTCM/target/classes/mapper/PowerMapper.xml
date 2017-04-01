@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.jowin.dao.PowerDao">
+	<insert id="savePower" 
+	parameterType="cn.jowin.entity.Power">
+		insert into power 
+		( power_Id, user_Id,found_Room,apply_For_User,update_Room, 
+		 update_Company, set_Adminstator) 
+		values 
+			 (#{powerId}, #{userId}, #{foundRoom},
+			 #{applyForUser}, #{updateRoom}, #{updateCompany},#{setAdminstator})
+	</insert>
+
+	<select id="findPowerById"
+		parameterType="string"
+		resultType="cn.jowin.entity.Power">
+		select 
+			power_Id, 
+			user_Id,
+			found_Room,
+			apply_For_User,
+			update_Room, 
+		 	update_Company, 
+		 	set_Adminstator
+		from
+			power
+		where	
+			power_Id=#{powerId}
+	</select>
+	
+		
+	
+</mapper>
+
+
+
+
+
+
+

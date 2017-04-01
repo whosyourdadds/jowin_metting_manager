@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.jowin.dao.MeetingRelationDao">
+	<insert id="saveMeetingRelation" 
+	parameterType="cn.jowin.entity.MeetingRelation">
+		insert into meeting_relation
+		( meeting_Id, user_id,update_time,host_user,vip_user,isDelete,user_name,user_email,user_modile) 
+		values 
+			 (#{meetingId}, #{userId},#{updateTime},#{hostUser},#{vipUser},#{isDelete},#{userName},#{userEmail},#{userModile})
+	</insert>
+
+	<select id="findMeetingByMeetingId"
+		parameterType="string"
+		resultType="cn.jowin.entity.MeetingRelation">
+		select 
+			meeting_Id AS meetingId,
+			user_Id AS userId,
+			update_Time AS updateTime,
+			host_user AS hostUser,
+			vip_user AS vipUser,
+			isDelete,
+			user_name AS userName,
+			user_email AS userEmail,
+			user_modile AS userModile
+		from
+			meeting_relation
+		where	
+			meeting_Id=#{meetingId}
+		
+	</select>
+	
+	<select id="findMeetingByUserId"
+		parameterType="string"
+		resultType="cn.jowin.entity.MeetingRelation">
+		select 
+			meeting_Id AS meetingId,
+			user_Id AS userId,
+			update_Time AS updateTime,
+			host_user AS hostUser,
+			vip_user AS vipUser,
+			isDelete,
+			user_name AS userName,
+			user_email AS userEmail,
+			user_modile AS userModile
+		from
+			meeting_relation
+		where	user_id=#{userId}
+	</select>	
+	
+	<select id="findMeetingByMeetingRelation"
+		parameterType="cn.jowin.entity.MeetingRelation"
+		resultType="cn.jowin.entity.MeetingRelation">
+		select 
+			meeting_Id AS meetingId,
+			user_Id AS userId,
+			update_Time AS updateTime,
+			host_user AS hostUser,
+			vip_user AS vipUser,
+			isDelete,
+			user_name AS userName,
+			user_email AS userEmail,
+			user_modile AS userModile
+		from
+			meeting_relation
+		WHERE	user_id=#{userId} 
+		AND meeting_id=#{meetingId}
+	</select>
+	
+	<delete id="deleteMeetingRelation" parameterType="java.util.Map">
+		delete FROM meeting_relation
+		where user_id=#{userId} 
+		AND meeting_id=#{meetingId}
+	</delete>
+	
+	<delete id="deleteMeetingRelationByMeetingId" parameterType="string">
+		delete FROM meeting_relation
+		where meeting_id=#{meetingId}
+	</delete>
+	
+	
+	<update id="updateMeetingRelationByMeetingId" parameterType="cn.jowin.entity.MeetingRelation">
+		update meeting_relation
+		set
+			user_id=#{userId}
+			update_Time = #{updateTime},
+			host_user = #{hostUser},
+			vip_user = #{vipUser}
+		where meeting_id = #{meetingId}
+	</update>
+	
+	<update id="updateIsDelete" parameterType="java.util.Map">
+		update meeting_relation
+		set 
+			isDelete = #{isDelete}
+		where meeting_id = #{meetingId}
+	</update>
+	
+	<!-- 给修改主要用户用户在有会议的情况下修改自己的用户信息，
+	必须连会议关系表中的信息一起修改 -->
+	<update id="updateMeetingRelationByUserId" parameterType="cn.jowin.entity.MeetingRelation">
+		update meeting_relation
+		set
+			user_name = #{userName},
+			user_email = #{userEmail},
+			user_modile = #{userModile}
+		where user_id=#{userId}
+		
+	
+		
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+

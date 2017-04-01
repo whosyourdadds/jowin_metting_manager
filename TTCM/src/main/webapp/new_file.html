@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" /> 
+<title>get file input full path</title> 
+<script language='javascript'> 
+function getFullPath(obj) 
+{ 
+	alert("in");
+if(obj) 
+{ 
+	alert("1");
+//ie 
+if (window.navigator.userAgent.indexOf("MSIE")>=1) 
+{ 
+	alert("IE");
+obj.select(); 
+return document.selection.createRange().text; 
+} 
+//firefox 
+else if(window.navigator.userAgent.indexOf("Firefox")>=1) 
+{ 
+	alert("FF");
+if(obj.files) 
+{ 
+	console.log(obj.files);
+return obj.files; 
+} 
+return obj.value; 
+} 
+return obj.value; 
+} 
+} 
+</script> 
+</head> 
+<body> 
+<input type="file" onchange="document.getElementById('img').src=getFullPath(this);" /> 
+<img id="img" /> 
+</body> 
+</html>

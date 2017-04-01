@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.jowin.dao.MeetingDao">
+	<insert id="saveMeeting" 
+	parameterType="cn.jowin.entity.Meeting">
+		insert into meeting 
+		( meeting_Id, room_Id,user_Id,start_Time,end_Time,subject,description, 
+		 timezone,start_Date_Time,end_Date_Time,hostuser_Id,roomlink,recurrence, 
+		 reminder,update_Time,delay_Time,record) 
+		values 
+			 (#{meetingId}, #{roomId}, #{userId},
+			 #{startTime}, #{endTime},#{subject}, 
+			 #{description},#{timezone},#{startDateTime},#{endDateTime}, 
+			 #{hostuserId},#{roomlink},#{recurrence},#{reminder},#{updateTime},
+			 #{delayTime},#{record})
+	</insert>
+	
+	<select id="findMeetingById"
+		parameterType="string"
+		resultType="cn.jowin.entity.Meeting">
+		select 
+			meeting_Id AS meetingId, 
+			room_Id AS roomId,
+			user_Id AS userId,
+			start_Time AS startTime,
+			end_Time AS endTime,
+			
+		 	subject,
+		 	description, 
+		 	timezone,
+		 	start_Date_Time AS startDateTime,
+		 	end_Date_Time AS endDateTime,
+		 	hostuser_Id AS hostuserId,
+		 	roomlink,
+		 	recurrence, 
+		 	reminder,
+		 	update_Time AS updateTime,
+		 	delay_Time AS delayTime,
+		 	record,
+		 	isEmail
+		 	
+		from
+			meeting
+		where	
+			meeting_Id=#{meetingId}
+	</select>
+	
+	<select id="findMeetingByRoomId"
+		parameterType="string"
+		resultType="cn.jowin.entity.Meeting">
+		select 
+			meeting_Id AS meetingId, 
+			room_Id AS roomId,
+			user_Id AS userId,
+			start_Time AS startTime,
+			end_Time AS endTime,
+			
+		 	subject,
+		 	description, 
+		 	timezone,
+		 	start_Date_Time AS startDateTime,
+		 	end_Date_Time AS endDateTime,
+		 	hostuser_Id AS hostuserId,
+		 	roomlink,
+		 	recurrence, 
+		 	reminder,
+		 	update_Time AS updateTime,
+		 	delay_Time AS delayTime,
+		 	record,
+		 	isEmail
+		from
+			meeting
+		where	
+			room_Id=#{roomId}
+	</select>
+	
+	<select id="findMeetingByRecord" parameterType="java.lang.Integer" resultType="cn.jowin.entity.Meeting">
+		select 
+			meeting_Id AS meetingId, 
+			room_Id AS roomId,
+			user_Id AS userId,
+			start_Time AS startTime,
+			end_Time AS endTime,
+		 	subject,
+		 	description, 
+		 	timezone,
+		 	start_Date_Time AS startDateTime,
+		 	end_Date_Time AS endDateTime,
+		 	hostuser_Id AS hostuserId,
+		 	roomlink,
+		 	recurrence, 
+		 	reminder,
+		 	update_Time AS updateTime,
+		 	delay_Time AS delayTime,
+		 	record,
+		 	isEmail
+		from
+			meeting
+		where	
+			record == #{record} 
+			 
+	</select>
+	
+	<select id="findMeetingByNotEqualRecord"  resultType="cn.jowin.entity.Meeting">
+		select 
+			meeting_Id AS meetingId, 
+			room_Id AS roomId,
+			user_Id AS userId,
+			start_Time AS startTime,
+			end_Time AS endTime,
+		 	subject,
+		 	description, 
+		 	timezone,
+		 	start_Date_Time AS startDateTime,
+		 	end_Date_Time AS endDateTime,
+		 	hostuser_Id AS hostuserId,
+		 	roomlink,
+		 	recurrence, 
+		 	reminder,
+		 	update_Time AS updateTime,
+		 	delay_Time AS delayTime,
+		 	record,
+		 	isEmail
+		from
+			meeting
+		where	
+			record != 3 
+			 
+	</select>
+	
+	<select id="findMeetingBySubject"
+		parameterType="string"
+		resultType="cn.jowin.entity.Meeting">
+		select 
+			meeting_Id AS meetingId, 
+			room_Id AS roomId,
+			user_Id AS userId,
+			start_Time AS startTime,
+			end_Time AS endTime,
+		 	subject,
+		 	description, 
+		 	timezone,
+		 	start_Date_Time AS startDateTime,
+		 	end_Date_Time AS endDateTime,
+		 	hostuser_Id AS hostuserId,
+		 	roomlink,
+		 	recurrence, 
+		 	reminder,
+		 	update_Time AS updateTime,
+		 	delay_Time AS delayTime,
+		 	record,
+		 	isEmail
+		from
+			meeting
+		where	subject=#{subject}
+	</select>	
+	
+	
+	<select id="findMeetingByTime" 
+		parameterType="java.util.Map" 
+		resultType="cn.jowin.entity.Meeting">
+		select 
+			meeting_Id AS meetingId, 
+			room_Id AS roomId,
+			user_Id AS userId,
+			start_Time AS startTime,
+			end_Time AS endTime,
+		 	subject,
+		 	description, 
+		 	timezone,
+		 	start_Date_Time AS startDateTime,
+		 	end_Date_Time AS endDateTime,
+		 	hostuser_Id AS hostuserId,
+		 	roomlink,
+		 	recurrence, 
+		 	reminder,
+		 	update_Time AS updateTime,
+		 	delay_Time AS delayTime,
+		 	record,
+		 	isEmail
+		from
+			meeting
+		where	start_Time > #{startTime}
+		AND 	start_Time &lt;= #{endTime}
+		AND 	record!=3 
+		AND		((isEmail != '1' AND isEmail != '2' ) OR isEmail IS NULL)
+		
+	</select>
+	
+	<select id="findMeetingByEndTime" 
+		parameterType="java.util.Map" 
+		resultType="cn.jowin.entity.Meeting">
+		select 
+			meeting_Id AS meetingId, 
+			room_Id AS roomId,
+			user_Id AS userId,
+			start_Time AS startTime,
+			end_Time AS endTime,
+		 	subject,
+		 	description, 
+		 	timezone,
+		 	start_Date_Time AS startDateTime,
+		 	end_Date_Time AS endDateTime,
+		 	hostuser_Id AS hostuserId,
+		 	roomlink,
+		 	recurrence, 
+		 	reminder,
+		 	update_Time AS updateTime,
+		 	delay_Time AS delayTime,
+		 	record,
+		 	isEmail
+		from
+			meeting
+		where	end_Time >= #{startTime}
+		AND 	end_Time &lt; #{endTime}
+		AND 	record!=3 
+		AND		(isEmail != '2' OR isEmail IS NULL)
+	</select>
+	
+	
+	<select id="findMeetingByRoomIdAndStartTime"
+		parameterType="java.util.Map"
+		resultType="cn.jowin.entity.Meeting">
+		select 
+			meeting_Id AS meetingId, 
+			room_Id AS roomId,
+			user_Id AS userId,
+			start_Time AS startTime,
+			end_Time AS endTime,
+			
+		 	subject,
+		 	description, 
+		 	timezone,
+		 	start_Date_Time AS startDateTime,
+		 	end_Date_Time AS endDateTime,
+		 	hostuser_Id AS hostuserId,
+		 	roomlink,
+		 	recurrence, 
+		 	reminder,
+		 	update_Time AS updateTime,
+		 	delay_Time AS delayTime,
+		 	record,
+		 	isEmail
+		FROM
+			meeting
+		WHERE
+			Room_Id = #{roomId}
+		AND
+			start_Time > #{startTime}
+		ORDER BY
+			start_Time
+	</select>
+	
+	
+	<delete id="deleteMeeting" parameterType="string">
+		DELETE FROM meeting
+		WHERE meeting_id=#{meetingId}
+	</delete>
+	
+	<delete id="deleteMeetingByRoomId" parameterType="string">
+		DELETE FROM meeting
+		WHERE room_Id=#{roomId}
+	</delete>
+	
+	<update id="updateMeeting" parameterType="cn.jowin.entity.Meeting">
+		update meeting 
+		set  				
+			room_Id = #{roomId},
+			start_Time = #{startTime},
+			end_Time = #{endTime},
+		 	subject = #{subject},
+		 	description = #{description}, 
+		 	timezone = #{timezone},
+		 	start_Date_Time = #{startDateTime},
+		 	end_Date_Time = #{endDateTime},
+		 	hostuser_Id = #{hostuserId},
+		 	roomlink = #{roomlink},
+		 	recurrence = #{recurrence}, 
+		 	reminder = #{reminder},
+		 	update_Time = #{updateTime},
+		 	delay_Time = #{delayTime},
+		 	record = #{record},
+		 	isEmail = #{isEmail}
+		 				
+		WHERE 
+				meeting_Id = #{meetingId}			
+	</update>
+	
+	<update id="updateRecordMeeting" parameterType="cn.jowin.entity.Meeting">
+		update meeting 
+		set 
+			record =#{record}
+		where 
+			meeting_Id = #{meetingId}
+	</update>
+	
+	<update id="updateIsEmailMeeting" parameterType="cn.jowin.entity.Meeting">
+		update meeting 
+		set  				
+		 	isEmail = #{isEmail}
+		 				
+		WHERE 
+				meeting_Id = #{meetingId}			
+	</update>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+

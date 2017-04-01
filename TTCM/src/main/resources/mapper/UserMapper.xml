@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.jowin.dao.UserDao">
+	<insert id="saveUser" parameterType="cn.jowin.entity.User">
+		insert into user 
+		( user_id, 
+		name,
+		password,
+		email,
+		modile,
+		phone, 
+		company_id,
+		update_time,
+		is_Adminstrator,
+		meeting_Id,
+		power_Id,job,company_name) 
+		
+		values 
+			 (#{id}, #{name}, #{password},
+			  #{email}, #{modile},#{phone},
+			 	#{companyId},#{updateTime},#{isAdminstrator},#{meetingId},
+			 	#{powerId},#{job},#{companyName}) 
+	</insert>
+
+	<select id="findUserById" parameterType="string" resultType="cn.jowin.entity.User">
+		select 
+			user_id as id,
+			name,
+			password,
+			email,
+			modile,phone, 
+		 	company_id AS companyId,
+		 	update_time AS updateTime,
+		 	is_Adminstrator AS isAdminstrator,
+		 	meeting_Id AS meetingId,
+		 	power_Id AS powerId,
+		 	job,
+		 	company_name AS companyName
+		from
+			user
+		where	
+			user_id=#{id}
+	</select>
+	
+	<select id="findUserByCompanyId" parameterType="string" resultType="cn.jowin.entity.User">
+		select 
+			user_id as id,
+			name,
+			password,
+			email,
+			modile,phone, 
+		 	company_id AS companyId,
+		 	update_time AS updateTime,
+		 	is_Adminstrator AS isAdminstrator,
+		 	meeting_Id AS meetingId,
+		 	power_Id AS powerId,
+		 	job,
+		 	company_name AS companyName
+		from
+			user
+		where	
+			company_id=#{companyId}
+		and 
+			(is_Adminstrator IS NOT NULL  OR  is_Adminstrator != "" )
+	</select>
+	
+	<select id="findUserByModile"
+		parameterType="string"
+		resultType="cn.jowin.entity.User">
+		select 
+			user_id as id,
+			name,
+			password,
+			email,
+			modile,phone, 
+		 	company_id AS companyId,
+		 	update_time AS updateTime,
+		 	is_Adminstrator AS isAdminstrator,
+		 	meeting_Id AS meetingId,
+		 	power_Id AS powerId,
+		 	job,
+		 	company_name AS companyName
+		from
+			user
+		where  modile=#{modile}
+	</select>
+		
+	<select id="findAppUserByCompanyId" parameterType="string" resultType="cn.jowin.entity.User">
+		select 
+			user_id as id,
+			name,
+			password,
+			email,
+			modile,
+			phone, 
+		 	company_id AS companyId,
+		 	update_time AS updateTime,
+		 	is_Adminstrator AS isAdminstrator,
+		 	meeting_Id AS meetingId,
+		 	power_Id AS powerId,
+		 	job,
+		 	company_name AS companyName
+		from
+			user
+		where	
+			company_id=#{companyId}
+		and 
+			(is_Adminstrator IS NULL OR is_Adminstrator ="")
+	</select>
+	<update id="setIsAdminstrator" parameterType="cn.jowin.entity.User">
+		update user 
+		set user.is_Adminstrator = #{isAdminstrator} 
+		where user_id = #{id}
+	</update>
+	
+	<delete id="refuseUserDelete" parameterType="cn.jowin.entity.User">
+		delete FROM user 
+		where 	user_id = #{id}
+	</delete>
+	
+	<select id="findAll" resultType="cn.jowin.entity.User">
+		select 
+			user_id as id,
+			name,
+			password,
+			email,
+			modile,phone, 
+		 	company_id AS companyId,
+		 	update_time AS updateTime,
+		 	is_Adminstrator AS isAdminstrator,
+		 	meeting_Id AS meetingId,
+		 	power_Id AS powerId,
+		 	job,
+		 	company_name AS companyName
+		from
+			user
+		WHERE is_Adminstrator != "" OR is_Adminstrator IS NOT NULL
+	</select>
+	
+	
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+

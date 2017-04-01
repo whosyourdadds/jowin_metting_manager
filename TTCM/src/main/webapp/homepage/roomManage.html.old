@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>房间管理</title>
+	<link rel="stylesheet" href="../css/popup.css">
+	<script type="text/javascript"
+		src="../scripts/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="../scripts/cookie_util.js"></script>
+	<script type="text/javascript" src="../scripts/const.js"></script>
+	<script type="text/javascript" src="../scripts/aaa/findRoom.js"></script>
+	<style type="text/css">
+		body{
+		    background-color: #a0a0a0;
+		    font-family:"微软雅黑","黑体","宋体";
+		}
+		.logo{
+			background-color:#fff;
+		}
+		
+		.menu{
+		    overflow: hidden;
+		    margin-top: 3px;
+		    list-style:none;
+		}
+		
+		li{
+			float: left;
+		    line-height: 22px;
+		    height: 22px;
+		    width: 83px;
+		    font-size: 20px;
+		    font-weight: bolder;
+		    margin-top: 20px;
+		    margin-left: 10px;
+		    margin-right: 10px;
+		    color: #fff;
+		}
+		
+		.content{
+			height: 800px;
+		    border:1px solid gray;
+		    width:960px;
+		    margin:0 auto;
+		    background-color:#dff;
+		}
+		
+		.room {
+			border: 1px solid #ccc;
+			border-collapse:collapse; 
+			margin:50px auto;
+			width:70%;
+			background-color:#FFF;
+		}
+		td{
+			border: 1px solid #ccc;
+			
+		}
+		tr{
+			height: 30px;
+			
+		}
+		.title{
+			font-weight: bold;
+		}
+		
+		#add{
+			height: 35px;
+			width: 80px;
+			margin: 10px 10px 10px 10px;
+			font-weight: bold;
+			font-size: 15px;
+		}
+		#updateRoom{
+			margin-left: 300px;
+			margin-top: 30px;
+		}
+		
+		.menu li:hover{
+			background-color: #ddd;
+			color: #666;
+		}
+	</style>
+	
+</head>
+<body>
+	<!-- logo区 -->
+	<div style="width:960px;margin:0 auto;" class = "logo">
+		<img  src="../case/jowin.png"/>
+		<p></p>
+	</div>
+	
+	<!-- 菜单区 -->
+	<div style="border:1px solid gray;width:960px;margin:0 auto;" class="cd">
+		<ul class="menu">
+			<a href="homepage.html"><li id="li1">主&nbsp;&nbsp;&nbsp;页</li></a>
+			<a href="admin.html"><li id="li2">管理员</li></a>
+			<a href="order/order.html"><li id="li3">会议管理</li></a>
+			<a href="roomManage.html"><li id="li4">房间管理</li></a>
+			<a href="power.html"><li id="li5">授权管理</li></a>
+			<a href="userApplication.html"><li id="li6">用户申请</li></a>
+			<a href="message.html"><li id="li7">个人信息</li></a>
+			<a href="updatePassword.html"><li id="li8">修改密码</li></a>
+			
+		</ul>
+	</div>
+	
+	<!-- 内容区 -->
+	<div class="content" >
+		<input type="button" id="add" value="增&nbsp;加">
+		
+		<table class="room" id="room">
+			<tr class="title">
+				<td align="center" valign="middle">状&nbsp;态</td>
+				<td align="center" valign="middle" >房间名</td>
+				<td align="center" valign="middle">电&nbsp;话</td>
+				<td align="center" valign="middle">室&nbsp;温</td>
+				<td align="center" valign="middle" style="width: 150px;">地&nbsp;址</td>
+				<td align="center" valign="middle">&nbsp;&nbsp;&nbsp;</td>
+			</tr>
+		</table>
+		<div id="updateRoom" >
+			房间名称<input type="text" id="updateRoomName"><br><br>
+			房间电话<input type="text" id="updateRoomPhone"><br><br>
+			人数上限<input type="number" id="updateRoomCiscoIP"><br><br>
+			房间密码<input type="password" id="updateRoomPassword"><br><br>
+			房间地址<input type="text" id="updateRoomAddress"><br><br>
+			<input type="button" id="rUpdate" value="修改">
+			&nbsp;
+			<input type="button" id="rUpdateCancel" value="取消">
+		</div>
+	</div>
+	
+	<!-- 版权区 -->
+	<div>
+		
+	</div>
+	<script type="text/javascript" src="../scripts/aaa/popup.js"></script>
+</body>
+</html>

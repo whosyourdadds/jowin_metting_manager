@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>登录</title>
+	<script type="text/javascript"
+		src="scripts/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="scripts/cookie_util.js"></script>
+	<script type="text/javascript" src = "scripts/aaa/login.js"></script>
+	<script type="text/javascript" src="scripts/const.js"></script>
+	<script type="text/javascript">
+		function skip(){
+			window.location="userRegist.html";
+		}
+	</script>
+</head>
+	<body>
+		<form action="companyRegist.html" method="post">
+			<div>
+				手机号<input type="text" id=userModile  ><br>
+				密&nbsp;码<input type="password" id="pwd"  >
+			</div>
+			<div>
+				<input type="button" id="login" value="登陆">
+				<input type="submit" id="cr" value="公司注册">
+				<input type="button" id="ur" value="账号申请" onclick="skip();">
+			</div>
+		</form>
+	</body>
+</html>
